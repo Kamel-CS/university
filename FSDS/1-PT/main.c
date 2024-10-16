@@ -5,3 +5,10 @@
 #include "file/file.h"
 #include "struct/struct.h"
 #include "global/global.h"
+
+
+int main() {
+
+
+    return 0;
+}
