@@ -45,7 +45,8 @@ Book* edit_book(head *Book, char* title, Book* edited_book) {
             current->title = edit_book->title;
             current->author = edit_book->author;
             current->publication_year = edit_book->publication_year;
+            return head;
         } 
     } 
-    return head;
+    return NULL;
 }
