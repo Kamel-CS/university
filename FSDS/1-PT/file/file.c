@@ -1,26 +1,19 @@
 #include "../global/global.h"
 #include "../struct/struct.h"
+#include <stdlib.h>
 
 
-void save_books(Book* head, string* file_name) {
-    FILE *file = fopen(file_name, "w");
-    if (file == NULL)
+void save_books(List *head, const char *filename) {
+    FILE *file = fopen(filename, "w"); // Open the file in write mode
+    if (!file)
         return;
 
-    Book* current = head;
+    List *current = head; // Start from the head of the list
     while (current != NULL) {
-        fprintf(file, "%s,%s,%d\n", file_name);
-        current = current->next;
+        // Write the book fields separated by commas
+        fprintf(file, "%s,%s,%d\n", current->book.title, current->book.author, current->book.publication_year);
+        current = current->next; // Move to the next node
     }
 
-    fclose(file_name);
-}
-
-
-Book* load_books(string* file_name) {
-    FILE *file = fopen(file_name, "r");
-    if (file == NULL)
-        return NULL;
-
-    Book* head = NULL, current = NULL;
+    fclose(file); // Close the file
 }
