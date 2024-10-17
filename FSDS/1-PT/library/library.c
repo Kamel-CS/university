@@ -8,7 +8,7 @@
 List* add_book(List* head, Book* new_book, int* status) {
     List* new_node = malloc(sizeof(List));
     if (new_node == NULL) {
-        *status = -1;
+        *status = -1;   // memory allocation failure
         return head;
     }
         
@@ -45,7 +45,7 @@ List* delete_book(List* head, const char *title, int *status) {
         previous = current;
         current = current->next;
     }
-    *status = -1;   // not found
+    *status = 1;   // not found
     return head;
 }
 
