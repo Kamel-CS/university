@@ -38,10 +38,23 @@ Book book_input() {
     new_book.author[strcspn(new_book.author, "\n")] = '\0';
 
     printf("\tPublication year: ");
-    scanf("%d", &new_book.publication_year);
+    while (scanf("%d", &new_book.publication_year) != 1 || new_book.publication_year <= 0) {
+        printf("Invalid input. Please enter a positive integer for the publication year: ");
+        while(getchar() != '\n'); // clear invalid input
+    }
     getchar();
 
     return new_book;
+}
+
+
+void free_list(List* head) {
+    List* current = head;
+    while(current != NULL) {
+        List* temp = current;
+        current = current->next;
+        free(temp);
+    }
 }
 
 
@@ -135,6 +148,8 @@ int main() {
         }
 
     } while(choice != 7);
+
+    free_list(head);
 
     return 0;
 }
