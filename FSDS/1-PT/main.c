@@ -4,6 +4,7 @@
 #include "library/library.h"
 #include "struct/struct.h"
 #include "global/global.h"
+#include "file/file.h"
 
 
 void display_menu() {
@@ -30,6 +31,7 @@ int main() {
     int status = 0;
     char title[MAX_SIZE];
     List *head = NULL;
+    const char* filename = "books.txt";
 
     do {
         display_menu();
@@ -96,10 +98,22 @@ int main() {
                     printf("Book not found");
                 break;
             }
-            case 4: {
+            case 4:
                 display_books(head);
                 break;
-            }
+
+            case 5: 
+                save_books(head, filename);
+                break;
+            
+            case 6:
+                head = load_books(filename);
+                break;
+
+            case 7:
+                printf("Quitting the program...\n");
+                break;
+
            default:
                 printf("Invalid choice, Please try again\n");
                 break;
